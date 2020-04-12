@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>2048 Game</title>
+    <link href="/css/main.css" rel="stylesheet" type="text/css">
+    <style>
+        .score-container:after {
+            content: "分数";
+        }
+        
+        .best-container:after {
+            content: "最佳";
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+
+<body>
+    <div class="mobile-top"></div>
+    <div class="container">
+        <div class="heading">
+            <h1 class="title"><a href='/'>2048</a></h1>
+            <div class="scores-container">
+                <div class="score-container">0</div>
+                <div class="best-container">0</div>
+            </div>
+        </div>
+        <div class="game-intro">
+            <a class="restart-button">新建游戏</a>
+            <a class="fallback-button">撤销</a>
+            <h2 class='subtitle'>2048在线版</h2>
+            <div class='above-game'>
+                <p>测试</p>
+            </div>
+        </div>
+        <div class="game-container">
+            <div class="game-message">
+                <p></p>
+                <div class="lower">
+                    <a class="keep-playing-button">继续游戏</a>
+                    <a class="retry-button">重新开始</a>
+                </div>
+            </div>
+            <div class="grid-container">
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+            </div>
+            <div class="tile-container">
+            </div>
+        </div>
+    </div>
+    <div class='side-column side-column-left'>
+    </div>
+    <div class='side-column side-column-right'>
+    </div>
+
+    <script src="/js/bind_polyfill.js" type="text/javascript"></script>
+    <script src="/js/classlist_polyfill.js" type="text/javascript"></script>
+    <script src="/js/animframe_polyfill.js" type="text/javascript"></script>
+    <script src="/js/keyboard_input_manager.js" type="text/javascript"></script>
+    <script src="/js/html_actuator_local.js" type="text/javascript"></script>
+    <script src="/js/grid.js" type="text/javascript"></script>
+    <script src="/js/tile.js" type="text/javascript"></script>
+    <script src="/js/local_storage_manager.js" type="text/javascript"></script>
+    <script src="/js/game_manager.js" type="text/javascript"></script>
+    <script src="/js/application.js" type="text/javascript"></script>
+
+</body>
+
+</html>
