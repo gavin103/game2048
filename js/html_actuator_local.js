@@ -104,7 +104,6 @@ HTMLActuator.prototype.message = function(won) {
     var message = won ? "目标达成!" : "游戏结束!";
     this.messageContainer.classList.add(type);
     this.messageContainer.getElementsByTagName("p")[0].textContent = message;
-    twttr.widgets.load();
 };
 HTMLActuator.prototype.clearMessage = function() {
     this.messageContainer.classList.remove("game-won");
