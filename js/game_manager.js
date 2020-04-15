@@ -6,9 +6,16 @@ function GameManager(size, InputManager, Actuator, StorageManager) {
     this.startTiles = 2;
     this.inputManager.on("move", this.move.bind(this));
     this.inputManager.on("restart", this.restart.bind(this));
+    this.inputManager.on("fallback", this.fallback.bind(this));
     this.inputManager.on("keepPlaying", this.keepPlaying.bind(this));
     this.setup();
 }
+GameManager.prototype.fallback = function() {
+    this.storageManager.fallbackGameState();
+    this.actuator.continueGame();
+    this.setup();
+    window.location.href = window.location.href;
+};
 GameManager.prototype.restart = function() {
     this.storageManager.clearGameState();
     this.actuator.continueGame();

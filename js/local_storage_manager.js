@@ -43,10 +43,14 @@ LocalStorageManager.prototype.getGameState = function() {
     return stateJSON ? JSON.parse(stateJSON) : null;
 };
 LocalStorageManager.prototype.setGameState = function(gameState) {
-    var lastState = this.getGameState();
-    this.storage.setItem(this.lastStateKey, JSON.stringify(lastState));
+    var stateJSON = this.storage.getItem(this.gameStateKey);
+    this.storage.setItem(this.lastStateKey, stateJSON);
     this.storage.setItem(this.gameStateKey, JSON.stringify(gameState));
 };
 LocalStorageManager.prototype.clearGameState = function() {
     this.storage.removeItem(this.gameStateKey);
+};
+LocalStorageManager.prototype.fallbackGameState = function() {
+    var stateJSON = this.storage.getItem(this.lastStateKey);
+    this.storage.setItem(this.gameStateKey, stateJSON);
 };
