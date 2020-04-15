@@ -43,8 +43,8 @@ LocalStorageManager.prototype.getGameState = function() {
     return stateJSON ? JSON.parse(stateJSON) : null;
 };
 LocalStorageManager.prototype.setGameState = function(gameState) {
-    var lastStateJSON = this.getGameState();
-    this.storage.setItem(this.lastStateKey, lastStateJSON)
+    var lastState = this.getGameState();
+    this.storage.setItem(this.lastStateKey, JSON.stringify(lastState));
     this.storage.setItem(this.gameStateKey, JSON.stringify(gameState));
 };
 LocalStorageManager.prototype.clearGameState = function() {
