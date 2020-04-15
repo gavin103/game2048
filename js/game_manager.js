@@ -12,8 +12,6 @@ function GameManager(size, InputManager, Actuator, StorageManager) {
 }
 GameManager.prototype.fallback = function() {
     this.storageManager.fallbackGameState();
-    this.actuator.continueGame();
-    this.setup();
     window.location.href = window.location.href;
 };
 GameManager.prototype.restart = function() {
