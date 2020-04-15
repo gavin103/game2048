@@ -20,11 +20,12 @@ GameManager.prototype.keepPlaying = function() {
     this.actuator.continueGame();
 };
 GameManager.prototype.isGameTerminated = function() {
-    if (this.over || (this.won && !this.keepPlaying)) {
-        return true;
-    } else {
-        return false;
-    }
+    // if (this.over || (this.won && !this.keepPlaying)) {
+    //     return true;
+    // } else {
+    //     return false;
+    // }
+    return !!(this.over || (this.won && !this.keepPlaying))
 };
 GameManager.prototype.setup = function() {
     var previousState = this.storageManager.getGameState();
