@@ -127,8 +127,8 @@ GameManager.prototype.move = function(direction) {
                     self.grid.removeTile(tile);
                     tile.updatePosition(positions.next);
                     self.score += merged.value;
-                    if (merged.value === 2048)
-                        self.won = true;
+                    // if (merged.value === 2048)
+                    //     self.won = true;
                 } else {
                     self.moveTile(tile, positions.farthest);
                 }

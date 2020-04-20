@@ -17,9 +17,10 @@ window.fakeStorage = {
 function LocalStorageManager() {
     this.bestScoreKey = "bestScore";
     this.gameStateKey = "gameState";
-    this.lastStateKey = "lastState";
+    this.stateStore = "stateStore"
     var supported = this.localStorageSupported();
     this.storage = supported ? window.localStorage : window.fakeStorage;
+    this.initStateStore()
 }
 LocalStorageManager.prototype.localStorageSupported = function() {
     var testKey = "test";
@@ -30,6 +31,13 @@ LocalStorageManager.prototype.localStorageSupported = function() {
         return true;
     } catch (error) {
         return false;
+    }
+};
+LocalStorageManager.prototype.initStateStore = function() {
+    var hasStore = this.storage.getItem(this.stateStore)
+    if(!hasStore){
+        var store = new Array(20)
+        this.storage.setItem(this.stateStore,JSON.stringify(store))
     }
 };
 LocalStorageManager.prototype.getBestScore = function() {
@@ -43,14 +51,30 @@ LocalStorageManager.prototype.getGameState = function() {
     return stateJSON ? JSON.parse(stateJSON) : null;
 };
 LocalStorageManager.prototype.setGameState = function(gameState) {
-    var stateJSON = this.storage.getItem(this.gameStateKey);
-    this.storage.setItem(this.lastStateKey, stateJSON);
+    // var stateJSON = this.storage.getItem(this.gameStateKey);
+    // this.saveState2Store(stateJSON)
     this.storage.setItem(this.gameStateKey, JSON.stringify(gameState));
+    this.saveState2Store(JSON.stringify(gameState))
 };
 LocalStorageManager.prototype.clearGameState = function() {
     this.storage.removeItem(this.gameStateKey);
 };
 LocalStorageManager.prototype.fallbackGameState = function() {
-    var stateJSON = this.storage.getItem(this.lastStateKey);
-    this.storage.setItem(this.gameStateKey, stateJSON);
+    var store = JSON.parse(this.storage.getItem(this.stateStore))
+    var stateJSON = store[18]
+    if(stateJSON){
+        this.storage.setItem(this.gameStateKey, stateJSON);
+        store.unshift(null);
+        store.unshift(null);
+        store.length = 20;
+        this.storage.setItem(this.stateStore,JSON.stringify(store))
+    }else{
+        alert('已无路可退咯')
+    }
 };
+LocalStorageManager.prototype.saveState2Store = function(stateJSON) {
+    var store = JSON.parse(this.storage.getItem(this.stateStore))
+    store.push(stateJSON)
+    store.shift()
+    this.storage.setItem(this.stateStore,JSON.stringify(store))
+}
