@@ -69,7 +69,8 @@ LocalStorageManager.prototype.fallbackGameState = function() {
         store.length = 20;
         this.storage.setItem(this.stateStore,JSON.stringify(store))
     }else{
-        alert('已无路可退咯')
+        alert('已无路可退咯');
+        this.storage.removeItem(this.stateStore)
     }
 };
 LocalStorageManager.prototype.saveState2Store = function(stateJSON) {
