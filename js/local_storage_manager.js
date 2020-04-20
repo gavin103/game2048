@@ -70,7 +70,7 @@ LocalStorageManager.prototype.fallbackGameState = function() {
         this.storage.setItem(this.stateStore,JSON.stringify(store))
     }else{
         alert('已无路可退咯');
-        this.storage.removeItem(this.stateStore)
+        this.clearStateStore();
     }
 };
 LocalStorageManager.prototype.saveState2Store = function(stateJSON) {
@@ -79,3 +79,6 @@ LocalStorageManager.prototype.saveState2Store = function(stateJSON) {
     store.shift()
     this.storage.setItem(this.stateStore,JSON.stringify(store))
 }
+LocalStorageManager.prototype.clearStateStore = function() {
+    this.storage.removeItem(this.stateStore);
+};

@@ -15,9 +15,11 @@ GameManager.prototype.fallback = function() {
     window.location.href = window.location.href;
 };
 GameManager.prototype.restart = function() {
+    
     this.storageManager.clearGameState();
     this.actuator.continueGame();
     this.setup();
+    this.storageManager.clearStateStore();
     window.location.href = window.location.href;
 };
 GameManager.prototype.keepPlaying = function() {
@@ -67,7 +69,7 @@ GameManager.prototype.actuate = function() {
         this.storageManager.setBestScore(this.score);
     }
     if (this.over) {
-        this.storageManager.clearGameState();
+        // this.storageManager.clearGameState();
     } else {
         this.storageManager.setGameState(this.serialize());
     }
